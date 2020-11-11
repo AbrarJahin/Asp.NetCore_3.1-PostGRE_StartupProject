@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@4.4.1",
+      "destination": "wwwroot/lib/twitter-bootstrap/",
+      "files": [
+        "js/bootstrap.bundle.js",
+        "css/bootstrap.css"
+      ]
+    },
+    {
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [
+        "jquery.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "jquery-validation@1.19.1",
+      "destination": "wwwroot/lib/jquery-validation/",
+      "files": [
+        "dist/jquery.validate.js",
+        "dist/additional-methods.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
+      "files": [
+        "jquery.validate.unobtrusive.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "@microsoft/signalr@3.1.2",
+      "destination": "wwwroot/lib/microsoft-signalr",
+      "files": [
+        "dist/browser/signalr.js"
+      ]
+    },
+    {
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "wwwroot/lib/bootstrap-datepicker/",
+      "files": [
+        "css/bootstrap-datepicker.css",
+        "js/bootstrap-datepicker.js"
+      ]
+    },
+    {
+      "library": "datatables@1.10.19",
+      "destination": "wwwroot/lib/datatables/",
+      "files": [
+        "js/jquery.dataTables.min.js",
+        "css/jquery.dataTables.css"
+      ]
+    }
+  ]
+}
