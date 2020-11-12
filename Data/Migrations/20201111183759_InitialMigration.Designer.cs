@@ -10,7 +10,7 @@ using StartupProject_Asp.NetCore_PostGRE.Data;
 namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201111175425_InitialMigration")]
+    [Migration("20201111183759_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
