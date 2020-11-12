@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net;
+using StartupProject_Asp.NetCore_PostGRE.Data.Models;
 
 namespace StartupProject_Asp.NetCore_PostGRE
 {
@@ -44,7 +45,7 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 }
             });
 
-            services.AddDefaultIdentity<IdentityUser>(options => {
+            services.AddDefaultIdentity<ApplicationUser>(options => {
                     if (Environment.IsDevelopment())
                     {
                         options.SignIn.RequireConfirmedAccount = true;
@@ -64,9 +65,15 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoleManager<RoleManager<IdentityRole>>()
-                .AddSignInManager<SignInManager<IdentityUser>>()
-                .AddUserManager<UserManager<IdentityUser>>()
+                .AddSignInManager<SignInManager<ApplicationUser>>()
+                .AddUserManager<UserManager<ApplicationUser>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            /*
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
+            */
 
             services.AddControllersWithViews();
             services.AddRazorPages();
