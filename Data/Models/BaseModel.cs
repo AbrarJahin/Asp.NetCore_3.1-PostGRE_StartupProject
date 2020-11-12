@@ -13,7 +13,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Models
         [Key()]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(Order = 1)]
-        public long Id { get; set; }
+        public string Id { get; set; }
         [HiddenInput(DisplayValue = false), Display(Name = "First Entry Time")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("CreateTime", TypeName = "TIMESTAMPTZ")]
