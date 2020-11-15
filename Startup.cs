@@ -45,7 +45,27 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 }
             });
 
-            services.AddDefaultIdentity<ApplicationUser>(options => {
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => {
+                    if (Environment.IsDevelopment())
+                    {
+                        options.SignIn.RequireConfirmedAccount = true;
+                        // Password settings
+                        options.Password.RequireDigit = false;
+                        options.Password.RequiredLength = 4;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireUppercase = false;
+                        options.Password.RequireLowercase = false;
+                    }
+                    else
+                    {
+                        options.Password.RequiredLength = 8;
+                    }
+                })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
+            /*
+            services.AddDefaultIdentity<IdentityUser>(options => {
                     if (Environment.IsDevelopment())
                     {
                         options.SignIn.RequireConfirmedAccount = true;
@@ -65,9 +85,11 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoleManager<RoleManager<IdentityRole>>()
-                .AddSignInManager<SignInManager<ApplicationUser>>()
-                .AddUserManager<UserManager<ApplicationUser>>()
+                .AddSignInManager<SignInManager<IdentityUser>>()
+                .AddUserManager<UserManager<IdentityUser>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            */
+
             /*
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -82,7 +104,7 @@ namespace StartupProject_Asp.NetCore_PostGRE
             {
                 options.Preload = true;
                 options.IncludeSubDomains = true;
-                options.MaxAge = TimeSpan.FromDays(60);
+                options.MaxAge = TimeSpan.FromDays(60); //60 days
                 //options.ExcludedHosts.Add("example.com");
                 //options.ExcludedHosts.Add("www.example.com");
             });

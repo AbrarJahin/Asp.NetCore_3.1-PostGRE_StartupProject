@@ -16,7 +16,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data
             base.OnModelCreating(builder);
             #region Rename default Identity Table Names
                 builder.HasDefaultSchema("Identity");
-                builder.Entity<IdentityUser>(entity =>
+                builder.Entity<ApplicationUser>(entity =>
                 {
                     entity.ToTable(name: "User");
                 });
