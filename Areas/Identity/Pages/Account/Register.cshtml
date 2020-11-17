@@ -17,7 +17,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
-                        <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                     </span>
                 </div>
                 <input asp-for="Input.FirstName" class="form-control" placeholder="@Html.DisplayNameFor(x => x.Input.FirstName)" />
@@ -29,7 +29,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
-                        <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                     </span>
                 </div>
                 <input asp-for="Input.LastName" class="form-control" placeholder="@Html.DisplayNameFor(x => x.Input.LastName)" />
@@ -38,16 +38,28 @@
         </div>
     </div>
     <div class="row justify-content-md-center form-group">
-        <div class="col-md-12">
+        <div class="col col-md-6">
             <div class="form-group input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
-                        <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
                 <input asp-for="Input.Email" class="form-control" placeholder="@Html.DisplayNameFor(x => x.Input.Email)" />
             </div>
             <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <div class="col col-md-6">
+            <div class="form-group input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                        +88
+                    </span>
+                </div>
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="@Html.DisplayNameFor(x => x.Input.PhoneNumber)" />
+            </div>
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
         </div>
     </div>
     <div class="row justify-content-md-center form-group">
@@ -62,7 +74,7 @@
             <div class="form-group input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
-                        <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                     </span>
                 </div>
                 <input asp-for="Input.Password" class="form-control" placeholder="@Html.DisplayNameFor(x => x.Input.Password)" />
@@ -73,7 +85,7 @@
             <div class="form-group input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
-                        <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                     </span>
                 </div>
                 <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="@Html.DisplayNameFor(x => x.Input.ConfirmPassword)" />
@@ -82,21 +94,23 @@
         </div>
     </div>
     <div class="row justify-content-md-center">
-        <div class="col-md-6">
-            
+        <div class="col-md-12">
             <div class="form-group">
-
-                <input asp-for="Input.TermsAndConditions" type="checkbox" class="form-control form-check-input">
+                <input asp-for="Input.TermsAndConditions" type="checkbox" class="form-control form-check-input must-check">
                 <label class="form-check-label" for="materialLoginFormRemember">@Html.DisplayNameFor(x => x.Input.TermsAndConditions)</label>
+            </div>
+            <span asp-validation-for="Input.TermsAndConditions" class="text-danger"></span>
+        </div>
+        @*
+        <div class="col-md-12">
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input asp-for="Input.TermsAndConditions" class="form-control form-check-input must-check" type="checkbox"> @Html.DisplayNameFor(x => x.Input.TermsAndConditions)
+                </label>
                 <span asp-validation-for="Input.TermsAndConditions" class="text-danger"></span>
-
-                @*
-        @Html.CheckBoxFor(x => x.Input.TermsAndConditions)
-        @Html.LabelFor(x => x.Input.TermsAndConditions)
-        @Html.ValidationMessageFor(x => x.Input.TermsAndConditions)
-                *@
             </div>
         </div>
+        *@
     </div>
     <div class="row justify-content-md-center">
         <div class="col-md-12 col-centered">

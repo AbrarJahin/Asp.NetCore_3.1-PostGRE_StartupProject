@@ -19,6 +19,7 @@
       "wwwroot/lib/microsoft-signalr/dist/browser/signalr.js",
       "wwwroot/lib/bootstrap-datepicker/js/bootstrap-datepicker.js",
       "wwwroot/lib/datatables/js/dataTables.bootstrap4.js",
+      "wwwroot/js/globalConfig.js",
       "wwwroot/js/site.js"
     ],
     "minify": {

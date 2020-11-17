@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net;
 using StartupProject_Asp.NetCore_PostGRE.Data.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
 
 namespace StartupProject_Asp.NetCore_PostGRE
 {
@@ -131,7 +133,30 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 app.UseHsts();
             }
             app.UseHttpsRedirection();  //Can be ignored
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = context => context.Context.Response.GetTypedHeaders()
+                  .CacheControl = new CacheControlHeaderValue
+                  {
+                      NoTransform = true,
+                      Public = true,
+                      //OnlyIfCached = false,
+                      MaxAge = TimeSpan.FromDays(365) // 1 year
+                  }
+            }
+            /*
+            new StaticFileOptions()
+            {
+                //Configure Caching of static files
+                OnPrepareResponse = context =>
+                {
+                    context.Context.Response.Headers.Add("Cache-Control", "max-age=31622400, public, no-transform");
+                    //context.Context.Response.Headers.Add("Cache-Control", "no-cache, no-store");
+                    //context.Context.Response.Headers.Add("Expires", "-1");
+                }
+            }
+            */
+            );
 
             app.UseRouting();
 
