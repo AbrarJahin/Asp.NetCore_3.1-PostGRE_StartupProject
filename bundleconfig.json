@@ -5,6 +5,7 @@
       "wwwroot/lib/twitter-bootstrap/css/bootstrap.css",
       "wwwroot/lib/bootstrap-datepicker/css/bootstrap-datepicker.css",
       "wwwroot/lib/datatables/css/dataTables.bootstrap4.css",
+      "wwwroot/lib/font-awesome/css/font-awesome.css",
       "wwwroot/css/site.css"
     ]
   },
@@ -26,7 +27,8 @@
       "keepOneSpaceWhenCollapsing": true,
       "preserveImportantComments": false,
       "alwaysEscapeNonAscii": true,
-      "commentMode": "none"
+      "commentMode": "none",
+      "indentSize": 1
     },
     "sourceMap": false
   }

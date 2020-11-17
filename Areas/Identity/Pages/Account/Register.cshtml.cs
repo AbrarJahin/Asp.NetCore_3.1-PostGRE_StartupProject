@@ -45,21 +45,37 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Display(Name = "First Name")]
+            [Required(ErrorMessage = "First Name is required")]
+            [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only Alphabets are allowed for First Name")]
+            public string FirstName { get; set; }
+
+            [Display(Name = "Last Name")]
+            [Required(ErrorMessage = "Last Name is required")]
+            [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only Alphabets are allowed for Last Name")]
+            public string LastName { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "A paassword must be provided")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
+            [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "The password and confirmation password should have match")]
             public string ConfirmPassword { get; set; }
+
+            [Required(ErrorMessage = "You must agree with the terms and conditions before sign up")]
+            [Display(Name = "I Agree to Terms")]
+            [Range(typeof(bool), "true", "true", ErrorMessage = "Please agree with the terms and conditions before sign up")]
+            public bool TermsAndConditions { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)

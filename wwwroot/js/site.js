@@ -1,4 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿// Global Configuration
 $(document).ready(function () {
 	$.support.cors = true;
 
@@ -11,5 +11,20 @@ $(document).ready(function () {
 		weekStart: 6
 	});
 
+	// extend range validator method to treat checkboxes differently
+	$.validator.methods.range = function (value, element, param) {
+		if (element.type === 'checkbox') {
+			// if it's a checkbox return true if it is checked
+			return element.checked;
+		} else {
+			// otherwise run the default validation function
+			return $.validator.methods.range.call(this, value, element, param);
+		}
+	}
 
+
+});
+
+$(document).ready(function () {
+	
 });

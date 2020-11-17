@@ -16,6 +16,7 @@
             <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
             <link rel="stylesheet" href="~/lib/bootstrap-datepicker/css/bootstrap-datepicker.css">
             <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.css">
+            <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
             <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
         </environment>
         <environment exclude="Development">
@@ -51,14 +52,17 @@
             </nav>
         </header>
         <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
+            @RenderBody()
+            @*
+                <main role="main" class="pb-3">
+
             </main>
+                *@
         </div>
 
         <footer class="border-top footer text-muted">
             <div class="container">
-                &copy; 2020 - StartupProject_Asp.NetCore_PostGRE - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                &copy; @@ @DateTime.Now.Year - Asp.NetCore PostGRE - StartupProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>
 
@@ -77,5 +81,6 @@
         </environment>
 
         @RenderSection("Scripts", required: false)
+
     </body>
 </html>

@@ -3,15 +3,17 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "twitter-bootstrap@4.4.1",
+      "library": "twitter-bootstrap@4.5.3",
       "destination": "wwwroot/lib/twitter-bootstrap/",
       "files": [
         "js/bootstrap.bundle.js",
-        "css/bootstrap.css"
+        "js/bootstrap.bundle.js.map",
+        "css/bootstrap.css",
+        "css/bootstrap.css.map"
       ]
     },
     {
-      "library": "jquery@3.4.1",
+      "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [
         "jquery.js"
@@ -19,7 +21,7 @@
     },
     {
       "provider": "jsdelivr",
-      "library": "jquery-validation@1.19.1",
+      "library": "jquery-validation@1.19.2",
       "destination": "wwwroot/lib/jquery-validation/",
       "files": [
         "dist/jquery.validate.js",
@@ -35,10 +37,11 @@
     },
     {
       "provider": "jsdelivr",
-      "library": "@microsoft/signalr@3.1.2",
+      "library": "@microsoft/signalr@3.1.10",
       "destination": "wwwroot/lib/microsoft-signalr",
       "files": [
-        "dist/browser/signalr.js"
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.js.map"
       ]
     },
     {
@@ -46,15 +49,24 @@
       "destination": "wwwroot/lib/bootstrap-datepicker/",
       "files": [
         "css/bootstrap-datepicker.css",
+        "css/bootstrap-datepicker.css.map",
         "js/bootstrap-datepicker.js"
       ]
     },
     {
-      "library": "datatables@1.10.19",
+      "library": "datatables@1.10.21",
       "destination": "wwwroot/lib/datatables/",
       "files": [
         "js/jquery.dataTables.min.js",
         "css/jquery.dataTables.css"
+      ]
+    },
+    {
+      "library": "font-awesome@4.7.0",
+      "destination": "wwwroot/lib/font-awesome/",
+      "files": [
+        "css/font-awesome.css",
+        "fonts/fontawesome-webfont.woff2"
       ]
     }
   ]
