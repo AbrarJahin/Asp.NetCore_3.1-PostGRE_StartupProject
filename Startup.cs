@@ -11,6 +11,7 @@ using System.Net;
 using StartupProject_Asp.NetCore_PostGRE.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
+using StartupProject_Asp.NetCore_PostGRE.Services.EmailService;
 
 namespace StartupProject_Asp.NetCore_PostGRE
 {
@@ -35,6 +36,11 @@ namespace StartupProject_Asp.NetCore_PostGRE
                         IPAddress.Parse(Configuration.GetSection("ApplicationIP").Value)
                     );
             });
+
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+            //services.AddSingleton(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            //services.AddSingleton(Configuration.GetSection("SmtpSettings").Get<SmtpSettings>());
+            services.AddTransient<IMailer, Mailer>();
 
             services.AddDbContext<ApplicationDbContext>(options => {
                 if (Environment.IsDevelopment())
