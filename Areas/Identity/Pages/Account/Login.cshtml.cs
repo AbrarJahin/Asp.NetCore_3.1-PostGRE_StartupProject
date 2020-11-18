@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using StartupProject_Asp.NetCore_PostGRE.Data.Models;
 using System.Net.Mail;
 using System;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
 {
@@ -43,7 +44,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [EmailAddress]
+            //[EmailAddress]
             [Display(Name = "Email / Username")]
             public string Email { get; set; }
 
@@ -94,32 +95,46 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
                 string userName = Input.Email;
                 if (IsValidEmail(Input.Email))
                 {
-                    ApplicationUser user = await _userManager.FindByEmailAsync(Input.Email);
-                    if (user != null)
+                    ApplicationUser potentialUser = await _userManager.FindByEmailAsync(Input.Email.Normalize());
+                    if (potentialUser != null)
                     {
-                        userName = user.UserName;
+                        userName = potentialUser.UserName;
                     }
                 }
-                var result = await _signInManager.PasswordSignInAsync(
-                    userName,
+                ApplicationUser user = await _userManager.FindByNameAsync(userName.Normalize());
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Username or email not found");
+                    return Page();
+                }
+                else if (!await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    ModelState.AddModelError(string.Empty, "Email Not Verified");
+                    return Page();
+                }
+                SignInResult result = await _signInManager.PasswordSignInAsync(
+                    user,
                     Input.Password,
                     Input.RememberMe,
                     lockoutOnFailure: true
                 );
-                //var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
-                if (result.RequiresTwoFactor)
+                else if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
-                if (result.IsLockedOut)
+                else if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
+                    return RedirectToPage("./Lockout");
+                }
+                else if (result.IsNotAllowed)
+                {
+                    _logger.LogWarning("User account Not Allowed");
                     return RedirectToPage("./Lockout");
                 }
                 else
@@ -129,7 +144,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError(string.Empty, "Something Wrong");
             return Page();
         }
     }
