@@ -68,42 +68,17 @@ namespace StartupProject_Asp.NetCore_PostGRE
                     {
                         options.Password.RequiredLength = 8;
                     }
+                    //If sequintial failure for 5 times in 5 minuite
+                    options.Lockout = new LockoutOptions(){
+                        AllowedForNewUsers = true,
+                        DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5),
+                        MaxFailedAccessAttempts = 5
+                    };
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
-            /*
-            services.AddDefaultIdentity<IdentityUser>(options => {
-                    if (Environment.IsDevelopment())
-                    {
-                        options.SignIn.RequireConfirmedAccount = true;
-                        // Password settings
-                        options.Password.RequireDigit = false;
-                        options.Password.RequiredLength = 4;
-                        options.Password.RequireNonAlphanumeric = false;
-                        options.Password.RequireUppercase = false;
-                        options.Password.RequireLowercase = false;
-                    }
-                    else
-                    {
-                        options.Password.RequiredLength = 8;
-                    }
-                })
-                .AddRoles<IdentityRole>()
-                .AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddRoleManager<RoleManager<IdentityRole>>()
-                .AddSignInManager<SignInManager<IdentityUser>>()
-                .AddUserManager<UserManager<IdentityUser>>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            */
-
-            /*
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultUI()
-                .AddDefaultTokenProviders();
-            */
+            
 
             services.AddControllersWithViews();
             services.AddRazorPages();
