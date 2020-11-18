@@ -40,7 +40,7 @@ namespace StartupProject_Asp.NetCore_PostGRE
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             //services.AddSingleton(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
             //services.AddSingleton(Configuration.GetSection("SmtpSettings").Get<SmtpSettings>());
-            services.AddTransient<IMailer, Mailer>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddDbContext<ApplicationDbContext>(options => {
                 if (Environment.IsDevelopment())

@@ -9,9 +9,9 @@ namespace StartupProject_Asp.NetCore_PostGRE.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IMailer Mailer;
+        private readonly IEmailSender Mailer;
 
-        public HomeController(ILogger<HomeController> logger, IMailer mailer)
+        public HomeController(ILogger<HomeController> logger, IEmailSender mailer)
         {
             _logger = logger;
             Mailer = mailer;
@@ -19,6 +19,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Controllers
 
         public IActionResult Index()
         {
+            //Mailer.SendEmailAsync("abrarjahin@outlook.com","Subject","Body");
             return View();
         }
 
