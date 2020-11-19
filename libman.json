@@ -68,6 +68,13 @@
         "css/font-awesome.css",
         "fonts/fontawesome-webfont.woff2"
       ]
+    },
+    {
+      "library": "qrcodejs@1.0.0",
+      "destination": "wwwroot/lib/qrcodejs/",
+      "files": [
+        "qrcode.js"
+      ]
     }
   ]
 }

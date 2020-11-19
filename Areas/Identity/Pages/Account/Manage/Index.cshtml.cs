@@ -36,8 +36,12 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
             public string LastName { get; set; }
             [Display(Name = "Username")]
             public string Username { get; set; }
-            [Phone]
-            [Display(Name = "Phone number")]
+            [Required(ErrorMessage = "You must provide your phone number")]
+            [Display(Name = "Phone Number")]
+            [DataType(DataType.PhoneNumber)]
+            [StringLength(15, MinimumLength = 11)]
+            //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+            [RegularExpression(@"^[0][1][3-9][0-9]{8}$", ErrorMessage = "Not a valid Banagladeshi mobile phone number without country code")]
             public string PhoneNumber { get; set; }
             [Display(Name = "Profile Picture")]
             public byte[] ProfilePicture { get; set; }
@@ -101,11 +105,16 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
             }
             if (Input.PhoneNumber != phoneNumber)
             {
-                user.PhoneNumber = phoneNumber;
+                user.PhoneNumber = Input.PhoneNumber;
                 isUpdated = true;
                 //IdentityResult setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
             }
-            if(isUpdated)
+            if (Input.Username != user.UserName)
+            {
+                user.UserName = Input.Username;
+                isUpdated = true;
+            }
+            if (isUpdated)
             {
                 IdentityResult setPhoneResult = await _userManager.UpdateAsync(user);
                 if (!setPhoneResult.Succeeded)
