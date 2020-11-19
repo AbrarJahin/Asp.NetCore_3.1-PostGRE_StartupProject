@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using StartupProject_Asp.NetCore_PostGRE.Data.Models;
+using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 using System.Net.Mail;
 using System;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;

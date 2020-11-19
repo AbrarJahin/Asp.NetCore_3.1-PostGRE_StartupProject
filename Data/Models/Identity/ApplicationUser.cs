@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StartupProject_Asp.NetCore_PostGRE.Data.Models
+namespace StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity
 {
     public class ApplicationUser : IdentityUser
     {

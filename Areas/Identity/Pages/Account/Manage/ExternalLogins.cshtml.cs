@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using StartupProject_Asp.NetCore_PostGRE.Data.Models;
+using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
 {

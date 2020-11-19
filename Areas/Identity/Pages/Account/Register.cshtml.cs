@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using StartupProject_Asp.NetCore_PostGRE.Data.Models;
+using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 using StartupProject_Asp.NetCore_PostGRE.Services.EmailService;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account

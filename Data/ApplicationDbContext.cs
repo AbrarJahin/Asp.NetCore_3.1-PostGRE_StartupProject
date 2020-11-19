@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using StartupProject_Asp.NetCore_PostGRE.Data.Models;
+using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 using StartupProject_Asp.NetCore_PostGRE.Data.Seeds;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Data
@@ -22,34 +22,34 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data
         {
             base.OnModelCreating(builder);
             #region Rename default Identity Table Names
-            builder.HasDefaultSchema("Identity");
+            builder.HasDefaultSchema("public");
             builder.Entity<ApplicationUser>(entity =>
             {
-                entity.ToTable(name: "User");
+                entity.ToTable(name: "User", schema: "Identity");
             });
             builder.Entity<IdentityRole>(entity =>
             {
-                entity.ToTable(name: "Role");
+                entity.ToTable(name: "Role", schema: "Identity");
             });
             builder.Entity<IdentityUserRole<string>>(entity =>
             {
-                entity.ToTable("UserRoles");
+                entity.ToTable("UserRoles", schema: "Identity");
             });
             builder.Entity<IdentityUserClaim<string>>(entity =>
             {
-                entity.ToTable("UserClaims");
+                entity.ToTable("UserClaims", schema: "Identity");
             });
             builder.Entity<IdentityUserLogin<string>>(entity =>
             {
-                entity.ToTable("UserLogins");
+                entity.ToTable("UserLogins", schema: "Identity");
             });
             builder.Entity<IdentityRoleClaim<string>>(entity =>
             {
-                entity.ToTable("RoleClaims");
+                entity.ToTable("RoleClaims", schema: "Identity");
             });
             builder.Entity<IdentityUserToken<string>>(entity =>
             {
-                entity.ToTable("UserTokens");
+                entity.ToTable("UserTokens", schema: "Identity");
             });
             #endregion
 

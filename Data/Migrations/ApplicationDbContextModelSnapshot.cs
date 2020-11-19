@@ -15,7 +15,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Identity")
+                .HasDefaultSchema("public")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
@@ -43,7 +43,39 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .IsUnique()
                         .HasName("RoleNameIndex");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role","Identity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "aa9b5ca6-b2e0-4559-bf8a-024e92e6162f",
+                            ConcurrencyStamp = "9e39708e-3b6e-488e-b43e-c729232bf921",
+                            Name = "SuperAdmin"
+                        },
+                        new
+                        {
+                            Id = "60abc5d7-1bdc-4204-aa2c-6ed7cc83ca40",
+                            ConcurrencyStamp = "b8129bf8-8c9a-48dd-a41f-5bc6cadcb935",
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = "bf71c790-a12b-4f58-9fe4-511a893e32e5",
+                            ConcurrencyStamp = "03455ed8-583f-43ae-93a3-ab046f3b3120",
+                            Name = "Auditor"
+                        },
+                        new
+                        {
+                            Id = "b1f5d389-6de5-4275-896b-9a6652753257",
+                            ConcurrencyStamp = "30a23c2f-ee0c-4622-8ce9-5086683fc7a0",
+                            Name = "TeamMember"
+                        },
+                        new
+                        {
+                            Id = "237ab70d-8324-452a-bca2-75199ebfd78f",
+                            ConcurrencyStamp = "c6cf424f-9ef1-4009-acaf-8f106387ea8d",
+                            Name = "BasicMember"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -67,7 +99,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims");
+                    b.ToTable("RoleClaims","Identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -91,7 +123,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims");
+                    b.ToTable("UserClaims","Identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -113,7 +145,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins");
+                    b.ToTable("UserLogins","Identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -128,7 +160,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRoles","Identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -147,10 +179,10 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens");
+                    b.ToTable("UserTokens","Identity");
                 });
 
-            modelBuilder.Entity("StartupProject_Asp.NetCore_PostGRE.Data.Models.ApplicationUser", b =>
+            modelBuilder.Entity("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -223,22 +255,22 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex");
 
-                    b.ToTable("User");
+                    b.ToTable("User","Identity");
 
                     b.HasData(
                         new
                         {
-                            Id = "1982dec8-8fb3-46b1-a311-a01e8027a4d5",
+                            Id = "bb43f661-2d44-4617-9b87-abbbd2bb6490",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eaee4803-78d4-4b43-b6ad-fe7248322eda",
+                            ConcurrencyStamp = "c1f44b0c-08d3-44f5-b066-50501a57f411",
                             Email = "abrar@jahin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ABRAR@JAHIN.COM",
                             NormalizedUserName = "ABRAR",
-                            PasswordHash = "AQAAAAEAACcQAAAAELcE9myuLUQzVqv6RTn7xBKAoDeBh/JEZHYA2h+tNVkCLQ1ZpxcopVkNeox8z+mlzA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELBORMW/MEfWdbdWh27YnVzljg86cWr4PxQJKOtkhXh/IF8yFLs9Pk5cOAMpA7Mi/A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "34e9724f-becf-4758-820b-15fc18dae8a6",
+                            SecurityStamp = "8199ed96-fb6e-41b7-80d4-8478f971cadf",
                             TwoFactorEnabled = false,
                             UserName = "abrar",
                             UsernameChangeLimit = 10
@@ -256,7 +288,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.ApplicationUser", null)
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -265,7 +297,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.ApplicationUser", null)
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -280,7 +312,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.ApplicationUser", null)
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -289,7 +321,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.ApplicationUser", null)
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

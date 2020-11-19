@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net;
-using StartupProject_Asp.NetCore_PostGRE.Data.Models;
+using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using StartupProject_Asp.NetCore_PostGRE.Services.EmailService;
