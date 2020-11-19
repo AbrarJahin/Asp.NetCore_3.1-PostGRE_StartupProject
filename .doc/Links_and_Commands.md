@@ -9,20 +9,14 @@
 	- Update-Database 0		    #Remove all table
 	- Update-Database			#Create all table
 	- Script-migration
-	- Update-Database –TargetMigration: <name of last good migration>	#Restore from a good migration
+	- Update-Database –Migration <name of last good migration>	#Restore from a good migration - example: "Update-Database –Migration InitialMigration"
     - Drop-Database		#Drop The Database
 
-#Apply Migration-
-
-	- update-database	# Apply Migration
-	- drop-database		# Drop Database
-
-
-Create New Migration after dropping Current Migration-
+## Create New Migration after dropping Current Migration-
 
 	Update-Database 0; Remove-Migration; Add-Migration InitialMigration -OutputDir "Data/Migrations"; Update-Database
 
-Create New DB after dropping DB-
+## Create New DB after dropping DB-
 
 	Update-Database 0; Update-Database
 

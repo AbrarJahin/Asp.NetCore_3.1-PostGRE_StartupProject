@@ -28,6 +28,8 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
         [TempData]
         public string StatusMessage { get; set; }
 
+        [TempData]
+        public string UserNameChangeLimitMessage { get; set; }
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -48,23 +50,21 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
             public string PhoneNumber { get; set; }
             [Display(Name = "Profile Picture")]
             public byte[] ProfilePicture { get; set; }
+            public int UsernameChangeLimit { get; internal set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
-            string userName = await _userManager.GetUserNameAsync(user);
             string phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            string firstName = user.FirstName;
-            string lastName = user.LastName;
-            byte[] profilePicture = user.ProfilePicture;
-            Username = userName;
+            Username = await _userManager.GetUserNameAsync(user);
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                Username = userName,
-                FirstName = firstName,
-                LastName = lastName,
-                ProfilePicture = profilePicture
+                Username = Username,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePicture = user.ProfilePicture,
+                UsernameChangeLimit = user.UsernameChangeLimit
             };
         }
 
@@ -75,7 +75,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
+            UserNameChangeLimitMessage = $"You can change your username {user.UsernameChangeLimit} more time(s).";
             await LoadAsync(user);
             return Page();
         }
@@ -109,13 +109,28 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
             if (Input.PhoneNumber != phoneNumber)
             {
                 user.PhoneNumber = Input.PhoneNumber;
+                user.PhoneNumberConfirmed = false;
                 isUpdated = true;
                 //IdentityResult setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
             }
-            if (Input.Username != user.UserName)
+            if (Input.Username != user.UserName && user.UsernameChangeLimit > 0)
             {
-                user.UserName = Input.Username;
-                isUpdated = true;
+                ApplicationUser userNameExists = await _userManager.FindByNameAsync(Input.Username);
+                if (userNameExists != null)
+                {
+                    StatusMessage = "User name already taken. Select a different username.";
+                    //return RedirectToPage();
+                }
+                else
+                {
+                    user.UsernameChangeLimit -= 1;
+                    user.UserName = Input.Username;
+                    isUpdated = true;
+                }
+            }
+            else if(Input.Username != user.UserName && user.UsernameChangeLimit <= 0)
+            {
+                StatusMessage = "Username change limit is exceeded";
             }
             if (Request.Form.Files.Count > 0)
             {
