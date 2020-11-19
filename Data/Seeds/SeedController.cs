@@ -18,6 +18,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Seeds
         internal void Execute()
         {
             UserSeeder.Execute(ModelBuilder);
+            RoleSeeder.Execute(ModelBuilder);
         }
     }
 }

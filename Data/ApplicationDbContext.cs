@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using StartupProject_Asp.NetCore_PostGRE.Data.Models;
 using StartupProject_Asp.NetCore_PostGRE.Data.Seeds;
 
@@ -8,9 +10,11 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        private readonly IWebHostEnvironment Environment;
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IWebHostEnvironment env)
             : base(options)
         {
+            Environment = env;
             //this.Database.EnsureCreated();
         }
 
@@ -50,9 +54,12 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data
             #endregion
 
             #region Data Seeding
-            using (SeedController seeder = new SeedController(builder))
+            if (Environment.IsDevelopment())
             {
-                seeder.Execute();
+                using (SeedController seeder = new SeedController(builder))
+                {
+                    seeder.Execute();
+                }
             }
             #endregion
         }
