@@ -1,0 +1,21 @@
+﻿<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; @@ @DateTime.Now.Year - Asp.NetCore PostGRE - StartupProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+
+<environment include="Development">
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/microsoft-signalr/dist/browser/signalr.js"></script>
+    <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/qrcodejs/qrcode.js"></script>
+    <script src="~/js/globalConfig.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</environment>
+<environment exclude="Development">
+    <script type="text/javascript" src="~/js/site.min.js" asp-append-version="true"></script>
+</environment>

@@ -1,0 +1,26 @@
+﻿<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="web-author" content="S. M. Abrar Jahin">
+
+<meta name="description" content="Here is a precise description of my awesome webpage.">
+<meta name="robots" content="index, follow" />
+
+<title>@ViewData["Title"] - Asp.Net Core PostGRE - Startup Project</title>
+@Html.AntiForgeryToken()
+<environment include="Development">
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</environment>
+<environment exclude="Development">
+    <link rel="stylesheet" href="~/css/site.min.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only"
+          asp-fallback-test-property="position"
+          asp-append-version="true"
+          asp-fallback-test-value="absolute" />
+</environment>
