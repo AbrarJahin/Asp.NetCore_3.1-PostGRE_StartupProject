@@ -20,14 +20,25 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out by get");
+            string returnUrl = this.Url.Action("Index", "Home", null);
+            if (returnUrl != null)
+            {
+                return LocalRedirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToPage();
+            }
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            _logger.LogInformation("User logged out by post");
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

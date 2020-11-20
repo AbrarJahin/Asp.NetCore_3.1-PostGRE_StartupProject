@@ -3,35 +3,38 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
-    {
-    <li class="nav-item" style="align-self: center;">
-        @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @if (SignInManager.IsSignedIn(User))
         {
-            <img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))">
+            @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+            {
+                <img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))">
+            }
+            else
+            {
+                <img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="~/img/DefaultProPic.png">
+            }
+            <span>@User.Identity.Name</span>
         }
         else
         {
-            <img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="~/img/DefaultProPic.png">
+            <span>User Account</span>
         }
-    </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-        </li>
-        <li class="nav-item">
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+            <div class="dropdown-divider"></div>
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                <button type="submit" class="dropdown-item">Logout</button>
             </form>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
-    }
-</ul>
+        }
+        else
+        {
+            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        }
+    </div>
+ </li>
