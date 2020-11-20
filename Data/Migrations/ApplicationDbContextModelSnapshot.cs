@@ -52,40 +52,40 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e9b15de9-e426-4ec7-8316-9b18d5cb2d4c"),
-                            ConcurrencyStamp = "9147872a-5cbb-4000-a567-de204459d6ac",
+                            Id = new Guid("1ca1e782-4354-4e44-a3b0-b45a338e3c0d"),
+                            ConcurrencyStamp = "60cf2804-3ee5-4991-88e7-d52ae2483ca3",
                             Description = "Super Admin",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
-                            Id = new Guid("4de32535-b792-4f0a-89b1-9a829132326e"),
-                            ConcurrencyStamp = "cb76e658-212f-4629-a61b-a553f9268a36",
+                            Id = new Guid("00c9a295-1af4-4bc4-a779-996f9cb20c5c"),
+                            ConcurrencyStamp = "81ec1b4b-8d6c-4d27-8a99-f019d33b9e92",
                             Description = "Admin",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("eb4c5ad8-8acb-43a1-bb64-8c14abbbb60f"),
-                            ConcurrencyStamp = "eee592df-4e80-4dca-bd10-64a3a8162531",
+                            Id = new Guid("f9c2885d-bc10-4f9e-93d5-1dd3526baee7"),
+                            ConcurrencyStamp = "2189708c-ddb9-4279-baf5-6a1d00c7fa0c",
                             Description = "Auditor",
                             Name = "Auditor",
                             NormalizedName = "AUDITOR"
                         },
                         new
                         {
-                            Id = new Guid("66616b78-e0b1-464f-a351-1e40de948aa8"),
-                            ConcurrencyStamp = "ceb405f0-519d-4756-9967-777334d24c41",
+                            Id = new Guid("7e959f0c-344a-4915-82ec-1168ed64d1fc"),
+                            ConcurrencyStamp = "473e5ee1-fc1f-425d-8acb-0de7f03727b3",
                             Description = "Team Member",
                             Name = "TeamMember",
                             NormalizedName = "TEAMMEMBER"
                         },
                         new
                         {
-                            Id = new Guid("9af9ebcb-d933-4dbc-8809-3f3971d23d8a"),
-                            ConcurrencyStamp = "d6aed124-ed5b-4149-a8b0-72dc6d8a1d4d",
+                            Id = new Guid("2fed82eb-5780-4ad8-9c97-7caeda13deb1"),
+                            ConcurrencyStamp = "50ab33ac-1957-41ad-a20d-eaeb67d07862",
                             Description = "Basic Member",
                             Name = "BasicMember",
                             NormalizedName = "BASICMEMBER"
@@ -199,16 +199,17 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e5d0ca49-3bae-4870-82db-1583de1b55e4"),
+                            Id = new Guid("2ae31b85-32f7-4ea5-94d2-2b2c1a72910b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8ddcb90a-93ab-4e98-863a-90804e0ee716",
+                            ConcurrencyStamp = "2c34722b-6536-4cdc-bf41-32db7a6b0708",
                             Email = "abrar@jahin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ABRAR@JAHIN.COM",
                             NormalizedUserName = "ABRAR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJU9ZtWCgeT2LfHlP74Bg0IfJWiwAvgVLBQm6MgqRycURFay3xOG3ylM8g423gXi7w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGXlPXebKZuwNat25KrlauOvt8rq4Kfxrl0xXUXERG0fn4/R9sCyoozSVNb3BaD8Sw==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "637414614000595449_ce77466d-ff1e-432c-ba07-e4e9a43442b3",
                             TwoFactorEnabled = false,
                             UserName = "abrar",
                             UsernameChangeLimit = 10
@@ -249,6 +250,9 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LoginIp")
                         .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
@@ -326,7 +330,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.Role", "Role")
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.Role", null)
                         .WithMany("Claims")
                         .HasForeignKey("RoleId1");
                 });
@@ -339,7 +343,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.User", "User")
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.User", null)
                         .WithMany("Claims")
                         .HasForeignKey("UserId1");
                 });
@@ -352,7 +356,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.User", "User")
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.User", null)
                         .WithMany("Logins")
                         .HasForeignKey("UserId1");
                 });
@@ -365,7 +369,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.Role", "Role")
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.Role", null)
                         .WithMany("Users")
                         .HasForeignKey("RoleId1");
 
@@ -375,7 +379,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.User", "User")
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.User", null)
                         .WithMany("Roles")
                         .HasForeignKey("UserId1");
                 });
@@ -388,7 +392,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.User", "User")
+                    b.HasOne("StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity.User", null)
                         .WithMany("UserTokens")
                         .HasForeignKey("UserId1");
                 });

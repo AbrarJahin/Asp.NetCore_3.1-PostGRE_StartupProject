@@ -128,6 +128,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<Guid>(nullable: false),
+                    LoginIp = table.Column<string>(nullable: true),
                     UserId1 = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -156,8 +157,8 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                 {
                     UserId = table.Column<Guid>(nullable: false),
                     RoleId = table.Column<Guid>(nullable: false),
-                    UserId1 = table.Column<Guid>(nullable: true),
-                    RoleId1 = table.Column<Guid>(nullable: true)
+                    RoleId1 = table.Column<Guid>(nullable: true),
+                    UserId1 = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -228,18 +229,18 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("e9b15de9-e426-4ec7-8316-9b18d5cb2d4c"), "9147872a-5cbb-4000-a567-de204459d6ac", "Super Admin", "SuperAdmin", "SUPERADMIN" },
-                    { new Guid("4de32535-b792-4f0a-89b1-9a829132326e"), "cb76e658-212f-4629-a61b-a553f9268a36", "Admin", "Admin", "ADMIN" },
-                    { new Guid("eb4c5ad8-8acb-43a1-bb64-8c14abbbb60f"), "eee592df-4e80-4dca-bd10-64a3a8162531", "Auditor", "Auditor", "AUDITOR" },
-                    { new Guid("66616b78-e0b1-464f-a351-1e40de948aa8"), "ceb405f0-519d-4756-9967-777334d24c41", "Team Member", "TeamMember", "TEAMMEMBER" },
-                    { new Guid("9af9ebcb-d933-4dbc-8809-3f3971d23d8a"), "d6aed124-ed5b-4149-a8b0-72dc6d8a1d4d", "Basic Member", "BasicMember", "BASICMEMBER" }
+                    { new Guid("1ca1e782-4354-4e44-a3b0-b45a338e3c0d"), "60cf2804-3ee5-4991-88e7-d52ae2483ca3", "Super Admin", "SuperAdmin", "SUPERADMIN" },
+                    { new Guid("00c9a295-1af4-4bc4-a779-996f9cb20c5c"), "81ec1b4b-8d6c-4d27-8a99-f019d33b9e92", "Admin", "Admin", "ADMIN" },
+                    { new Guid("f9c2885d-bc10-4f9e-93d5-1dd3526baee7"), "2189708c-ddb9-4279-baf5-6a1d00c7fa0c", "Auditor", "Auditor", "AUDITOR" },
+                    { new Guid("7e959f0c-344a-4915-82ec-1168ed64d1fc"), "473e5ee1-fc1f-425d-8acb-0de7f03727b3", "Team Member", "TeamMember", "TEAMMEMBER" },
+                    { new Guid("2fed82eb-5780-4ad8-9c97-7caeda13deb1"), "50ab33ac-1957-41ad-a20d-eaeb67d07862", "Basic Member", "BasicMember", "BASICMEMBER" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "Identity",
                 table: "User",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName", "UsernameChangeLimit" },
-                values: new object[] { new Guid("e5d0ca49-3bae-4870-82db-1583de1b55e4"), 0, "8ddcb90a-93ab-4e98-863a-90804e0ee716", "abrar@jahin.com", true, null, null, false, null, "ABRAR@JAHIN.COM", "ABRAR", "AQAAAAEAACcQAAAAEJU9ZtWCgeT2LfHlP74Bg0IfJWiwAvgVLBQm6MgqRycURFay3xOG3ylM8g423gXi7w==", null, false, null, null, false, "abrar", 10 });
+                values: new object[] { new Guid("2ae31b85-32f7-4ea5-94d2-2b2c1a72910b"), 0, "2c34722b-6536-4cdc-bf41-32db7a6b0708", "abrar@jahin.com", true, null, null, false, null, "ABRAR@JAHIN.COM", "ABRAR", "AQAAAAEAACcQAAAAEGXlPXebKZuwNat25KrlauOvt8rq4Kfxrl0xXUXERG0fn4/R9sCyoozSVNb3BaD8Sw==", null, false, null, "637414614000595449_ce77466d-ff1e-432c-ba07-e4e9a43442b3", false, "abrar", 10 });
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",

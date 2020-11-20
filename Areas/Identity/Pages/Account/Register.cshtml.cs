@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StartupProject_Asp.NetCore_PostGRE.Data.Enums;
 using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 using StartupProject_Asp.NetCore_PostGRE.Services.EmailService;
 
@@ -88,7 +89,6 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
             [Required(ErrorMessage = "You must agree with the terms and conditions before sign up")]
             [Display(Name = "I agree to terms and conditions")]
             [Range(typeof(bool), "true", "true", ErrorMessage = "Please agree with the terms and conditions before sign up")]
-            //[CheckboxMustBeChecked(ErrorMessage = "You gotta tick the box!")]
             public bool TermsAndConditions { get; set; }
         }
 
@@ -120,6 +120,8 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User -" + user.Email + "- created a new account with password.");
+
+                    await _userManager.AddToRoleAsync(user, ERoles.BasicMember.ToString());
 
                     string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

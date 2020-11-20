@@ -7,6 +7,6 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity
     [Table("UserClaims", Schema = "Identity")]
     public class UserClaim : IdentityUserClaim<Guid>
     {
-        public virtual User User { get; set; }
+        //public virtual User User { get; set; }
     }
 }

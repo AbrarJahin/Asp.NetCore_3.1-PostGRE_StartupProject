@@ -7,6 +7,6 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity
     [Table("UserTokens", Schema = "Identity")]
     public class UserToken : IdentityUserToken<Guid>
     {
-        public virtual User User { get; set; }
+        //public virtual User User { get; set; }
     }
 }

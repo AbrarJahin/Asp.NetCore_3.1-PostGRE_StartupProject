@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
+using System;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Data.Seeds
 {
@@ -18,7 +19,8 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Seeds
                     PasswordHash = hasher.HashPassword(null, "abrar@jahin.com"),
                     Email = "abrar@jahin.com",
                     NormalizedEmail = "abrar@jahin.com".Normalize().ToUpper(),
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    SecurityStamp = DateTime.Now.Ticks.ToString()+"_"+Guid.NewGuid()
                 }
             );
         }
