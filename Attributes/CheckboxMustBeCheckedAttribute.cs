@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace StartupProject_Asp.NetCore_PostGRE.Validators
+namespace StartupProject_Asp.NetCore_PostGRE.Attributes
 {
     internal class CheckboxMustBeCheckedAttribute : ValidationAttribute
     {
