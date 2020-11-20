@@ -157,6 +157,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                 {
                     UserId = table.Column<Guid>(nullable: false),
                     RoleId = table.Column<Guid>(nullable: false),
+                    ReasonForAdding = table.Column<string>(nullable: true),
                     RoleId1 = table.Column<Guid>(nullable: true),
                     UserId1 = table.Column<Guid>(nullable: true)
                 },
@@ -229,18 +230,31 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("59adf146-5ed8-4d97-b6a8-6706d02957f6"), "e3501e29-5756-4149-836d-b6a848b2a0e9", "Super Admin", "SuperAdmin", "SUPERADMIN" },
-                    { new Guid("68d1f788-de36-4305-8a35-ab26e5b822b4"), "824f5ddc-e4e7-4156-accd-79f15c4b5c28", "Admin", "Admin", "ADMIN" },
-                    { new Guid("0f9efc85-30b3-49dc-b6fd-460fc42fa189"), "914e47ea-b5b9-4fd5-9086-8554a3b3bcbc", "Auditor", "Auditor", "AUDITOR" },
-                    { new Guid("6ae823aa-2514-4aab-8c8d-a0ade9acede3"), "04a2e507-081f-4197-8899-f0454ceb42c5", "Team Member", "TeamMember", "TEAMMEMBER" },
-                    { new Guid("1a9d4ad9-af4f-4677-bee5-80f7ba34af05"), "ecf0c0b2-7619-466c-874e-e2e392a4196c", "Basic Member", "BasicMember", "BASICMEMBER" }
+                    { new Guid("fc8ca77b-e22e-497b-86c1-b6ecbbf5c07a"), "3f881b5f-be59-4b2b-a50c-e29fcdf7e11a", "Super Admin", "SuperAdmin", "SUPERADMIN" },
+                    { new Guid("eaeddf14-cf6e-4a64-a367-3b88822fc8dc"), "c49c67bb-fe2e-4339-872f-c756ba466a03", "Admin", "Admin", "ADMIN" },
+                    { new Guid("e70dc84e-0fec-4019-b0c2-ca80c4ee8098"), "4ae425cc-d245-474a-ab2d-8f233ae3850a", "Auditor", "Auditor", "AUDITOR" },
+                    { new Guid("47036d44-a8f4-4954-8848-e1af69487f56"), "0ede51b5-ea38-41a9-889a-20881dd23bfe", "Team Member", "TeamMember", "TEAMMEMBER" },
+                    { new Guid("d7f5dfe6-cdcb-4cb7-b508-4ef643a34003"), "05007454-2e5c-4deb-9814-019e46da5ebf", "Basic Member", "BasicMember", "BASICMEMBER" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "Identity",
                 table: "User",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName", "UsernameChangeLimit" },
-                values: new object[] { new Guid("f96a02d9-3942-4dfc-9ab3-e1ea34df6d30"), 0, "9f42ea9e-4725-4141-9771-3692beb3ed75", "abrar@jahin.com", true, null, null, false, null, "ABRAR@JAHIN.COM", "ABRAR", "AQAAAAEAACcQAAAAENQIyKqSJifoE1VK38GJv2F+FHiE+ABzQFdyPPhhqJL6u3ezOhp+Kj8PjqM37x1llA==", null, false, null, "637414652924820848_391396ac-4132-469d-9e82-a8f453ecdc39", false, "abrar", 10 });
+                values: new object[] { new Guid("7d6275c9-9eb1-492f-af6d-afa6d35f1623"), 0, "cb57d9b4-6f84-4eab-93dd-aa48c05bd8d3", "abrar@jahin.com", true, null, null, false, null, "ABRAR@JAHIN.COM", "ABRAR", "AQAAAAEAACcQAAAAEE0mecdKycTk89F1iOLQc0fZgoDJoAdjM6cZeNoJ2nVTJdHs1pv9nrhPYieo+EDzUg==", null, false, null, "637414671530022826_b1a7a257-0f91-4f9e-8ee0-925eb6e790ee", false, "abrar", 10 });
+
+            migrationBuilder.InsertData(
+                schema: "Identity",
+                table: "UserRole",
+                columns: new[] { "UserId", "RoleId", "ReasonForAdding", "RoleId1", "UserId1" },
+                values: new object[,]
+                {
+                    { new Guid("7d6275c9-9eb1-492f-af6d-afa6d35f1623"), new Guid("fc8ca77b-e22e-497b-86c1-b6ecbbf5c07a"), "Migration", null, null },
+                    { new Guid("7d6275c9-9eb1-492f-af6d-afa6d35f1623"), new Guid("eaeddf14-cf6e-4a64-a367-3b88822fc8dc"), "Migration", null, null },
+                    { new Guid("7d6275c9-9eb1-492f-af6d-afa6d35f1623"), new Guid("e70dc84e-0fec-4019-b0c2-ca80c4ee8098"), "Migration", null, null },
+                    { new Guid("7d6275c9-9eb1-492f-af6d-afa6d35f1623"), new Guid("47036d44-a8f4-4954-8848-e1af69487f56"), "Migration", null, null },
+                    { new Guid("7d6275c9-9eb1-492f-af6d-afa6d35f1623"), new Guid("d7f5dfe6-cdcb-4cb7-b508-4ef643a34003"), "Migration", null, null }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",

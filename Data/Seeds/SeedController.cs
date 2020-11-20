@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Data.Seeds
 {
@@ -17,8 +18,8 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Seeds
 
         internal void Execute()
         {
-            UserSeeder.Execute(ModelBuilder);
-            RoleSeeder.Execute(ModelBuilder);
+            ICollection<Guid> userIdList = UserSeeder.Execute(ModelBuilder);
+            RoleSeeder.Execute(ModelBuilder, userIdList);
         }
     }
 }
