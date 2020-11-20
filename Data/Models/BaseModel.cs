@@ -13,7 +13,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Models
         [Key()]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(Order = 1)]
-        public string Id { get; set; }
+        internal Guid Id { get; set; }// = Guid.NewGuid();
         [HiddenInput(DisplayValue = false), Display(Name = "First Entry Time")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("CreateTime", TypeName = "TIMESTAMPTZ")]
@@ -30,11 +30,6 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Models
         [IgnoreDataMember]
         [HiddenInput(DisplayValue = false)]
         public DateTime? DeletionTime { get; set; }     //DeletionTime not null means the item is deleted
-
-        /*public BaseModel()
-        {
-            CreateTime = DateTime.UtcNow;
-        }*/
 
         public void SoftDelete()
         {

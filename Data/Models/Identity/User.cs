@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity
 {
     [Table("Users", Schema = "Identity")]
-    public class User : IdentityUser
+    public class User : IdentityUser<Guid>
     {
+        public override Guid Id { get; set; } = Guid.NewGuid();
         [PersonalData]
         public string FirstName { get; set; }
         [PersonalData]
