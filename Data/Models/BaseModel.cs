@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -17,10 +18,11 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Models
         [HiddenInput(DisplayValue = false), Display(Name = "First Entry Time")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("CreateTime", TypeName = "TIMESTAMPTZ")]
-        public DateTime? CreateTime { get; set; } = DateTime.UtcNow;
+        [ReadOnly(true)]
+        public DateTime CreateTime { get; private set; } = DateTime.UtcNow;
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [HiddenInput(DisplayValue = false), Display(Name = "Last Update Time"), Column("LastUpdateTime")]
-        public DateTime? LastUpdateTime { get; set; } = DateTime.UtcNow;
+        public DateTime? LastUpdateTime { get; set; }
 
         //Soft Delete
         /*

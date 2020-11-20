@@ -2,9 +2,13 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using StartupProject_Asp.NetCore_PostGRE.Data.Models;
 using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 using StartupProject_Asp.NetCore_PostGRE.Data.Seeds;
 using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Data
 {
@@ -70,6 +74,44 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data
                 }
             }
             #endregion
+        }
+
+        public override int SaveChanges()
+        {
+            UpdateTimestamps();
+            return base.SaveChanges();
+        }
+
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            UpdateTimestamps();
+            return base.SaveChanges(acceptAllChangesOnSuccess);
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            UpdateTimestamps();
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            UpdateTimestamps();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        private void UpdateTimestamps()
+        {
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseModel && (x.State == EntityState.Added || x.State == EntityState.Modified));
+            foreach (var entity in entities)
+            {
+                //Should store location also from here- http://www.jerriepelser.com/blog/aspnetcore-geo-location-from-ip-address/
+
+                if (entity.State == EntityState.Modified)
+                {
+                    ((BaseModel)entity.Entity).LastUpdateTime = DateTime.UtcNow;
+                }
+            }
         }
     }
 }
