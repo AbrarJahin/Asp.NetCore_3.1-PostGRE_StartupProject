@@ -8,7 +8,7 @@
 	- Remove-Migration -Force	#Remove last migration forcefully
 	- Update-Database 0		    #Remove all table
 	- Update-Database			#Create all table
-	- Script-migration
+	- Script-migration			#Generate SQL Script
 	- Update-Database –Migration <name of last good migration>	#Restore from a good migration - example: "Update-Database –Migration InitialMigration"
     - Drop-Database		#Drop The Database
 

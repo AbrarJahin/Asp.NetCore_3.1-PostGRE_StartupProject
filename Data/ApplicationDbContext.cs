@@ -32,6 +32,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data
             builder.Entity<RoleClaim>(builder =>
             {
                 //builder.HasOne(roleClaim => roleClaim.Role).WithMany(role => role.Claims).HasForeignKey(roleClaim => roleClaim.RoleId);
+                //builder.Property(x => x.RoleId).HasColumnName("RoleId");    //Prevent replicating same name
                 builder.ToTable("RoleClaim", schema: IdentitySchemaName);
             });
             builder.Entity<Role>(builder =>
@@ -76,6 +77,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data
             #endregion
         }
 
+        #region Update edit time on every entry edit
         public override int SaveChanges()
         {
             UpdateTimestamps();
@@ -113,5 +115,6 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data
                 }
             }
         }
+        #endregion
     }
 }

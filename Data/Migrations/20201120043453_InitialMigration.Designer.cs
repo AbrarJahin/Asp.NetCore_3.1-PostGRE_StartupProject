@@ -10,7 +10,7 @@ using StartupProject_Asp.NetCore_PostGRE.Data;
 namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201120033000_InitialMigration")]
+    [Migration("20201120043453_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,40 +54,40 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1ca1e782-4354-4e44-a3b0-b45a338e3c0d"),
-                            ConcurrencyStamp = "60cf2804-3ee5-4991-88e7-d52ae2483ca3",
+                            Id = new Guid("59adf146-5ed8-4d97-b6a8-6706d02957f6"),
+                            ConcurrencyStamp = "e3501e29-5756-4149-836d-b6a848b2a0e9",
                             Description = "Super Admin",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
-                            Id = new Guid("00c9a295-1af4-4bc4-a779-996f9cb20c5c"),
-                            ConcurrencyStamp = "81ec1b4b-8d6c-4d27-8a99-f019d33b9e92",
+                            Id = new Guid("68d1f788-de36-4305-8a35-ab26e5b822b4"),
+                            ConcurrencyStamp = "824f5ddc-e4e7-4156-accd-79f15c4b5c28",
                             Description = "Admin",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("f9c2885d-bc10-4f9e-93d5-1dd3526baee7"),
-                            ConcurrencyStamp = "2189708c-ddb9-4279-baf5-6a1d00c7fa0c",
+                            Id = new Guid("0f9efc85-30b3-49dc-b6fd-460fc42fa189"),
+                            ConcurrencyStamp = "914e47ea-b5b9-4fd5-9086-8554a3b3bcbc",
                             Description = "Auditor",
                             Name = "Auditor",
                             NormalizedName = "AUDITOR"
                         },
                         new
                         {
-                            Id = new Guid("7e959f0c-344a-4915-82ec-1168ed64d1fc"),
-                            ConcurrencyStamp = "473e5ee1-fc1f-425d-8acb-0de7f03727b3",
+                            Id = new Guid("6ae823aa-2514-4aab-8c8d-a0ade9acede3"),
+                            ConcurrencyStamp = "04a2e507-081f-4197-8899-f0454ceb42c5",
                             Description = "Team Member",
                             Name = "TeamMember",
                             NormalizedName = "TEAMMEMBER"
                         },
                         new
                         {
-                            Id = new Guid("2fed82eb-5780-4ad8-9c97-7caeda13deb1"),
-                            ConcurrencyStamp = "50ab33ac-1957-41ad-a20d-eaeb67d07862",
+                            Id = new Guid("1a9d4ad9-af4f-4677-bee5-80f7ba34af05"),
+                            ConcurrencyStamp = "ecf0c0b2-7619-466c-874e-e2e392a4196c",
                             Description = "Basic Member",
                             Name = "BasicMember",
                             NormalizedName = "BASICMEMBER"
@@ -201,17 +201,17 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2ae31b85-32f7-4ea5-94d2-2b2c1a72910b"),
+                            Id = new Guid("f96a02d9-3942-4dfc-9ab3-e1ea34df6d30"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2c34722b-6536-4cdc-bf41-32db7a6b0708",
+                            ConcurrencyStamp = "9f42ea9e-4725-4141-9771-3692beb3ed75",
                             Email = "abrar@jahin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ABRAR@JAHIN.COM",
                             NormalizedUserName = "ABRAR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGXlPXebKZuwNat25KrlauOvt8rq4Kfxrl0xXUXERG0fn4/R9sCyoozSVNb3BaD8Sw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENQIyKqSJifoE1VK38GJv2F+FHiE+ABzQFdyPPhhqJL6u3ezOhp+Kj8PjqM37x1llA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "637414614000595449_ce77466d-ff1e-432c-ba07-e4e9a43442b3",
+                            SecurityStamp = "637414652924820848_391396ac-4132-469d-9e82-a8f453ecdc39",
                             TwoFactorEnabled = false,
                             UserName = "abrar",
                             UsernameChangeLimit = 10
