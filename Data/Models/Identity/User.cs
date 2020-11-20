@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity
 {
-    public class ApplicationUser : IdentityUser
+    [Table("Users", Schema = "Identity")]
+    public class User : IdentityUser
     {
         [PersonalData]
         public string FirstName { get; set; }
@@ -13,5 +15,10 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity
         public string FullName => $"{FirstName} {LastName}";
         public int UsernameChangeLimit { get; set; } = 10;
         public byte[] ProfilePicture { get; set; }
+
+        public virtual ICollection<UserToken> UserTokens { get; set; }
+        public virtual ICollection<UserRole> Roles { get; set; }
+        public virtual ICollection<UserLogin> Logins { get; set; }
+        public virtual ICollection<UserClaim> Claims { get; set; }
     }
 }

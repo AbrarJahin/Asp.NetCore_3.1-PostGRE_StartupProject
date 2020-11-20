@@ -8,10 +8,10 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Seeds
     {
         internal static void Execute(ModelBuilder builder)
         {
-            PasswordHasher<ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
+            PasswordHasher<User> hasher = new PasswordHasher<User>();
             //Seeding the User to AspNetUsers table
-            builder.Entity<ApplicationUser>().HasData(
-                new ApplicationUser
+            builder.Entity<User>().HasData(
+                new User
                 {
                     UserName = "abrar",
                     NormalizedUserName = "abrar".Normalize().ToUpper(),

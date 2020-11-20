@@ -53,7 +53,7 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 }
             });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => {
+            services.AddIdentity<User, Role>(options => {
                     if (Environment.IsDevelopment())
                     {
                         options.SignIn.RequireConfirmedAccount = true;

@@ -18,13 +18,13 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, 
+        public LoginModel(SignInManager<User> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager)
+            UserManager<User> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -94,13 +94,13 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
                 string userName = Input.Email;
                 if (IsValidEmail(Input.Email))
                 {
-                    ApplicationUser potentialUser = await _userManager.FindByEmailAsync(Input.Email.Normalize());
+                    User potentialUser = await _userManager.FindByEmailAsync(Input.Email.Normalize());
                     if (potentialUser != null)
                     {
                         userName = potentialUser.UserName;
                     }
                 }
-                ApplicationUser user = await _userManager.FindByNameAsync(userName.Normalize());
+                User user = await _userManager.FindByNameAsync(userName.Normalize());
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "Username or email not found");

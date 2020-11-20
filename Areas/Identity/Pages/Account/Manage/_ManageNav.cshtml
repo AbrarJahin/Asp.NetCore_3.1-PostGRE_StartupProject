@@ -1,8 +1,5 @@
-﻿@*
-    @using Microsoft.AspNetCore.Identity
-*@
-@using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity
-@inject SignInManager<ApplicationUser> SignInManager
+﻿@using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity
+@inject SignInManager<User> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

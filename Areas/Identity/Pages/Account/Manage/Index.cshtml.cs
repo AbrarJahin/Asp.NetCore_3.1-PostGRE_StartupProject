@@ -12,12 +12,12 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
         public IndexModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            UserManager<User> userManager,
+            SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -53,7 +53,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
             public int UsernameChangeLimit { get; internal set; }
         }
 
-        private async Task LoadAsync(ApplicationUser user)
+        private async Task LoadAsync(User user)
         {
             string phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             Username = await _userManager.GetUserNameAsync(user);
@@ -82,7 +82,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostAsync()
         {
-            ApplicationUser user = await _userManager.GetUserAsync(User);
+            User user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -115,7 +115,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account.Manage
             }
             if (Input.Username != user.UserName && user.UsernameChangeLimit > 0)
             {
-                ApplicationUser userNameExists = await _userManager.FindByNameAsync(Input.Username);
+                User userNameExists = await _userManager.FindByNameAsync(Input.Username);
                 if (userNameExists != null)
                 {
                     StatusMessage = "User name already taken. Select a different username.";
