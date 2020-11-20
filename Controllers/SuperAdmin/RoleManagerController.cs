@@ -6,7 +6,7 @@ using StartupProject_Asp.NetCore_PostGRE.Data.Enums;
 using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 using System.Threading.Tasks;
 
-namespace StartupProject_Asp.NetCore_PostGRE.Controllers
+namespace StartupProject_Asp.NetCore_PostGRE.Controllers.SuperAdmin
 {
     [AuthorizeRoles(ERole.SuperAdmin)]
     public class RoleManagerController : Controller
