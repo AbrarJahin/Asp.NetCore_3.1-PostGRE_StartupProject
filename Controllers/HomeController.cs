@@ -27,6 +27,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Controllers
         }
 
         //[Authorize(Roles = "SuperAdmin")]
+        //[Authorize(Policy ="CanRead")]    -> Should implement
         [AuthorizeRoles(ERole.SuperAdmin, ERole.Admin)]
         public IActionResult Privacy()
         {
