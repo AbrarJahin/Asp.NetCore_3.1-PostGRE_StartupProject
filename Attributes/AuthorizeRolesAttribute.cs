@@ -8,9 +8,9 @@ namespace StartupProject_Asp.NetCore_PostGRE.Attributes
 {
     internal class AuthorizeRolesAttribute : AuthorizeAttribute
     {
-        public AuthorizeRolesAttribute(params ERoles[] allowedRoles)
+        public AuthorizeRolesAttribute(params ERole[] allowedRoles)
         {
-            IEnumerable<string> allowedRolesAsStrings = allowedRoles.Select(x => Enum.GetName(typeof(ERoles), x));
+            IEnumerable<string> allowedRolesAsStrings = allowedRoles.Select(x => Enum.GetName(typeof(ERole), x));
             Roles = string.Join(",", allowedRolesAsStrings);
         }
     }

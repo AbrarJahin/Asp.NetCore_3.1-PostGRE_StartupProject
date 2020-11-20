@@ -27,7 +27,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Controllers
         }
 
         //[Authorize(Roles = "SuperAdmin")]
-        [AuthorizeRoles(ERoles.SuperAdmin, ERoles.Admin)]
+        [AuthorizeRoles(ERole.SuperAdmin, ERole.Admin)]
         public IActionResult Privacy()
         {
             return View();

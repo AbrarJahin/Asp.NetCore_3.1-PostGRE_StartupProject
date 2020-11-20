@@ -121,7 +121,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User -" + user.Email + "- created a new account with password.");
 
-                    await _userManager.AddToRoleAsync(user, ERoles.BasicMember.ToString());
+                    await _userManager.AddToRoleAsync(user, ERole.BasicMember.ToString());
 
                     string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

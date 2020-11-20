@@ -20,6 +20,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Seeds
         {
             ICollection<Guid> userIdList = UserSeeder.Execute(ModelBuilder);
             RoleSeeder.Execute(ModelBuilder, userIdList);
+            ClaimSeeder.Execute(ModelBuilder, userIdList);
         }
     }
 }

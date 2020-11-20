@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Data.Enums
 {
-    public enum ERoles
+    public enum ERole
     {
-        [Display(Name = "By Alpha")]
+        [Display(Name = "Can't be assigned by system")]
         [Description("Super Admin")]
         SuperAdmin = 0,
         [Description("Admin")]

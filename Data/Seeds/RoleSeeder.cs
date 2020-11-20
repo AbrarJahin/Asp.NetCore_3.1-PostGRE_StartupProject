@@ -14,9 +14,9 @@ namespace StartupProject_Asp.NetCore_PostGRE.Data.Seeds
             IList<UserRole> userRoleList = new List<UserRole>();
             foreach (Guid superAdminId in superAdminUserIdList)
             {
-                foreach (object name in Enum.GetValues(typeof(ERoles)))
+                foreach (object name in Enum.GetValues(typeof(ERole)))
                 {
-                    string description = ((ERoles)name).Description();
+                    string description = ((ERole)name).Description();
                     Guid roleId = Guid.NewGuid();
                     roleList.Add(new Role
                     {
