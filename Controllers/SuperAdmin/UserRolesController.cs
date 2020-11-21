@@ -46,6 +46,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Controllers.SuperAdmin
         {
             ViewBag.userId = userId;
             User user = await _userManager.FindByIdAsync(userId.ToString());
+            IList<string> userRoleList = await _userManager.GetRolesAsync(user);
             if (user == null)
             {
                 ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
@@ -53,6 +54,7 @@ namespace StartupProject_Asp.NetCore_PostGRE.Controllers.SuperAdmin
             }
             ViewBag.UserName = user.UserName;
             List<ManageUserRolesViewModel> model = new List<ManageUserRolesViewModel>();
+
             foreach (Role role in _roleManager.Roles)
             {
                 ManageUserRolesViewModel userRolesViewModel = new ManageUserRolesViewModel
@@ -60,10 +62,8 @@ namespace StartupProject_Asp.NetCore_PostGRE.Controllers.SuperAdmin
                     RoleId = role.Id,
                     RoleName = role.Name
                 };
-                var b = user.Roles.Where(x => x.RoleId == role.Id).FirstOrDefault();
-                var a = await _userManager.IsInRoleAsync(user, role.Name);
-                
-                if (await _userManager.IsInRoleAsync(user, role.Name))
+                //if (await _userManager.IsInRoleAsync(user, role.Name))
+                if(userRoleList.Contains(role.Name))
                 {
                     userRolesViewModel.Selected = true;
                 }
