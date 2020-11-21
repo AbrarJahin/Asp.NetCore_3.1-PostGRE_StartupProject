@@ -12,6 +12,7 @@ using StartupProject_Asp.NetCore_PostGRE.Data.Models.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using StartupProject_Asp.NetCore_PostGRE.Services.EmailService;
+using WebMarkupMin.AspNetCore3;
 
 namespace StartupProject_Asp.NetCore_PostGRE
 {
@@ -78,11 +79,28 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
-            
+
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                options.ValidationInterval = TimeSpan.FromSeconds(1);   //Update Auth every second after role updated
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            services.AddWebMarkupMin(
+                options =>
+                {
+                    options.AllowMinificationInDevelopmentEnvironment = false;
+                    options.AllowCompressionInDevelopmentEnvironment = false;
+                })
+                .AddHtmlMinification(
+                    options =>
+                    {
+                        options.MinificationSettings.RemoveRedundantAttributes = true;
+                        options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+                        options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+                    })
+                .AddHttpCompression();
             services.AddHsts(options =>
             {
                 options.Preload = true;
@@ -92,11 +110,11 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 //options.ExcludedHosts.Add("www.example.com");
             });
 
-            //services.AddHttpsRedirection(options =>
-            //{
-            //    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-            //    options.HttpsPort = 5001;
-            //});
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                options.HttpsPort = 5001;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -124,21 +142,8 @@ namespace StartupProject_Asp.NetCore_PostGRE
                       //OnlyIfCached = false,
                       MaxAge = TimeSpan.FromDays(365) // 1 year
                   }
-            }
-            /*
-            new StaticFileOptions()
-            {
-                //Configure Caching of static files
-                OnPrepareResponse = context =>
-                {
-                    context.Context.Response.Headers.Add("Cache-Control", "max-age=31622400, public, no-transform");
-                    //context.Context.Response.Headers.Add("Cache-Control", "no-cache, no-store");
-                    //context.Context.Response.Headers.Add("Expires", "-1");
-                }
-            }
-            */
-            );
-
+            });
+            app.UseWebMarkupMin();
             app.UseRouting();
 
             app.UseAuthentication();
