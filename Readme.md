@@ -42,7 +42,7 @@ Bundling and minification is configured with [this](./bundleconfig.json) file wh
 
 ![libman easy configuration](.doc/img/libman.jpg)
 
-which generates a css file named **site.min.css** and a js file named **site.min.css** which includes all CSS and js file compliation including all libraries.
+which generates a css file named **site.min.css** and a js file named **site.min.js** which includes all CSS and js file compliation including all libraries.
 
 In the project, there is stored 1 custom CSS file can be found in [here](./wwwroot/css/site.css) and one custom js fle can be found in [here](./wwwroot/js/site.js) which is also configured with bundler and minifire. No code is added in the 2 file because of providing freedom to the developer who wishesh to use this project and customize it on his demand. AS well this 2 file is added to the bundler so that a developer who forks this repo, can know how to configure his own repo. And finally, version number is appended with the CSS and JS so that CSS and JS caching issue can't happen because after each build, browser will treat every CSS and JS as new one.
 
