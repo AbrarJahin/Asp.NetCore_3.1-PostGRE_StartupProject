@@ -30,19 +30,19 @@ namespace StartupProject_Asp.NetCore_PostGRE
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //IP Address Reading support
+            #region IP Address Reading support
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.KnownProxies.Add(
                         IPAddress.Parse(Configuration.GetSection("ApplicationIP").Value)
                     );
             });
-
+            #endregion
+            #region Email Service Configuration
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
-            //services.AddSingleton(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
-            //services.AddSingleton(Configuration.GetSection("SmtpSettings").Get<SmtpSettings>());
             services.AddTransient<IEmailSender, EmailSender>();
-
+            #endregion
+            #region DB Service Configuration
             services.AddDbContext<ApplicationDbContext>(options => {
                 if (Environment.IsDevelopment())
                 {
@@ -53,7 +53,8 @@ namespace StartupProject_Asp.NetCore_PostGRE
                     options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
                 }
             });
-
+            #endregion
+            #region Identity Service Configuration
             services.AddIdentity<User, Role>(options => {
                     if (Environment.IsDevelopment())
                     {
@@ -79,12 +80,23 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
-
+            #endregion
+            #region Policies Configuration in Auth
+            services.AddAuthorization(options =>
+            {
+                //options.AddPolicy("MustHaveEmail", polBuilder => polBuilder.RequireClaim(System.Security.Claims.ClaimTypes.Email));
+                options.AddPolicy("IsAdminClaimAccess", policy => policy.RequireClaim("DateOfJoing"));
+                //options.AddPolicy("IsAdminClaimAccess", policy => policy.Re
+                //options.AddPolicy("Morethan365DaysClaim", policy => policy.Requirements.Add(new MinimumTimeSpendRequirement(365)));
+            });
+            #endregion
+            #region Update Auth every second after role updated
             services.Configure<SecurityStampValidatorOptions>(options =>
             {
-                options.ValidationInterval = TimeSpan.FromSeconds(1);   //Update Auth every second after role updated
+                options.ValidationInterval = TimeSpan.FromSeconds(1);
             });
-
+            #endregion
+            #region View Configuration
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddWebMarkupMin(
@@ -101,6 +113,8 @@ namespace StartupProject_Asp.NetCore_PostGRE
                         options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
                     })
                 .AddHttpCompression();
+            #endregion
+            #region Cache Configuration
             services.AddHsts(options =>
             {
                 options.Preload = true;
@@ -109,12 +123,14 @@ namespace StartupProject_Asp.NetCore_PostGRE
                 //options.ExcludedHosts.Add("example.com");
                 //options.ExcludedHosts.Add("www.example.com");
             });
-
+            #endregion
+            #region Force to use Https Config
             services.AddHttpsRedirection(options =>
             {
                 options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
                 options.HttpsPort = 5001;
             });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

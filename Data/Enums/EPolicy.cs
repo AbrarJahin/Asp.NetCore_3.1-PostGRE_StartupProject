@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StartupProject_Asp.NetCore_PostGRE.Data.Enums
 {
-    public enum EClaim
+    public enum EPolicy
     {
         [Display(Name = "Role Read")]
-        [Description("Read Role")]
+        [Description("Role-Read")]
         RoleRead = 0,
-        [Description("Write Role")]
+        [Description("Role-Write")]
         RoleWrite,
-        [Description("Update Role")]
+        [Description("Role-Update")]
         RoleUpdate,
-        [Description("Delete Role")]
+        [Description("Role-Delete")]
         RoleDelete
     }
 }
